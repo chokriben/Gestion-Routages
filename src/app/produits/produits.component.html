@@ -1,0 +1,45 @@
+<div>
+  <h1> Liste des produits </h1>
+  <!-- <app-entete></app-entete> -->
+  <table>
+    <thead>
+      <tr>
+        <th> Id </th>
+        <th> Code </th>
+        <th> Designation </th>
+        <th> Prix </th>
+        <th> Actions </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of produits">
+        <td>{{p.id}}</td>
+        <td>{{p.code}}</td>
+        <td>{{p.designation}}</td>
+        <td>{{p.prix}}</td>
+        <td>
+          <button (click)="afficherFicheProduit(p.id)">Editer</button>
+          <button (click)="supprimerProduit(p.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Fiche produit éditable -->
+  <div *ngIf="produitSelectionne">
+    <h2>Modifier le produit</h2>
+    <div>
+      <label>Code:</label>
+      <input type="text" [(ngModel)]="produitSelectionne.code">
+    </div>
+    <div>
+      <label>Designation:</label>
+      <input type="text" [(ngModel)]="produitSelectionne.designation">
+    </div>
+    <div>
+      <label>Prix:</label>
+      <input type="number" [(ngModel)]="produitSelectionne.prix">
+    </div>
+    <button (click)="validerModification()">Valider</button>
+  </div>
+</div>
